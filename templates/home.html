@@ -1,0 +1,37 @@
+<html>
+    <body>
+
+    <p>Click the button to get your coordinates.</p>
+    
+    
+    
+    <p id="demo"></p>
+    
+    <script type="text/javascript">
+    var x = document.getElementById("demo");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude;
+    }
+    getLocation();
+    showPosition();
+    </script>
+
+
+    <form>
+        <input type="text" name="kwinput" placeholder="Enter Desired Foods">
+    </form>
+
+    
+    </body>
+
+
+</html>
