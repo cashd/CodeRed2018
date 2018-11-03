@@ -3,45 +3,76 @@
     <body>
 
     <p>Click the button to get your coordinates.</p>
-    
+    <button onclick=debug() ></button>
     
     <p id="demo"></p>
-    
-    <script type="text/javascript">
-    var x = document.getElementById("demo");
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else { 
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    function showPosition(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude + 
-        "<br>Longitude: " + position.coords.longitude;
-    }
-    getLocation();
-    showPosition();
-    </script>
-
-    
-
-
 
     <div class="userInput">
-        <form action="#">
-            <input type="text" name="input" placeholder="Enter Desired Foods">
-            <select name="range">
+        <form>
+            <input type="text" name="input" id="keywords" placeholder="Enter Desired Foods">
+            <select name="range" id="range">
                 <option value="1">1</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
             </select>
-            <input type="submit">
         </form>
+        <input type="submit" onclick=handleSubmit()>
 
     </div>
+
+    <script type="text/javascript">
+
+        // Gets Location using Navigator
+        function getLocation() {
+            var x = document.getElementById("demo");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getInputs);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+    
+        // Shows Postion in a html element
+        function showPosition(position) {
+            var x = document.getElementById("demo");
+            x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;
+        }   
+    
+        // Debug function for testing
+        function debug(){
+            console.log(document.getElementById("keywords").value);
+        }
+    
+        // Gathers input from different DOM elements
+        function getInputs(position) {
+            var keywords = document.getElementById("keywords").value;
+            var range = document.getElementById("range").value;
+            console.log(position);
+            if (keywords && range && position) {
+                sendRequest(keywords, range, position);
+            } else {
+                console.log('All fields are NOT filled!')
+            }
+        }
+    
+        // Sends Request to our Backend API
+        function sendRequest(keywords, range, position){
+            console.log("Sending request...")
+        } 
+    
+        // Handles the onClick event from the submit button
+        function handleSubmit(){
+            getLocation();
+        }
+        
+        </script>
+
+        <script>
+            getLocation();
+            showPosition();
+        </script>
     
     </body>
 
