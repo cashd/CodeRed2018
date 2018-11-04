@@ -55,7 +55,7 @@ function createCard(r){
     cardTitle.innerHTML = r['name'];
     var cardText = document.createElement("p");
     cardText.setAttribute("class", "card-text");
-    cardText.innerHTML = `<ul><li>Address: ${r['address']}</li><li>Distance: ${Math.round(r['dis']*100)/100}</li><li><a href="${r['link']}">Menu Link</a</a></li></ul>`;
+    cardText.innerHTML = `<ul><li>Address: ${r['address']}</li><li>Distance: ${Math.round(r['dis']*100)/100} miles away</li><li><a href="${r['link']}">Menu Link</a</a></li></ul>`;
 
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
