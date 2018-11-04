@@ -63,13 +63,6 @@ function createCard(r){
     document.getElementById("result").appendChild(newCard);
 }
 
-function createGoogleMap(response){
-    // if (response.length != 0) {
-    //     var gMap = document.createElement("div")
-    //     gMap.setAttribute("id", "map")
-    //     document.element
-    // }
-}
 
 function handleResponse(response){
     console.log("Here")
@@ -77,7 +70,6 @@ function handleResponse(response){
     console.log(response['restaurants'].length);
     document.getElementById('result').innerHTML = '';
     response['restaurants'].map((r) => createCard(r))
-    createGoogleMap(response['restaurants'])
 }
 
 // Post data to API and handles errors
