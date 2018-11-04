@@ -1,7 +1,6 @@
-import peewee
+from peewee import *
 import csv
 from geopy import distance
-import os
 
 db = SqliteDatabase('/home/cash/Documents/CodeRed/CodeRed2018/backend/restaurants.db')
 
