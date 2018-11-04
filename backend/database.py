@@ -37,7 +37,8 @@ def populate_test_data():
         restaurant_start=True
         for row in csv_reader: 
             if restaurant_start == True:
-                rest=Restaurants.create(name=row[0],address= row[1], longitude= row[2], latitude=row[3],info=row[4],hours=row[5],link=row[6])
+                lng, lat = convert_address(row[1])
+                rest=Restaurants.create(name=row[0],address= row[1], longitude= lng, latitude=lat,info=row[4],hours=row[5],link=row[6])
                 rest.save
                 restaurant_start=False
             elif row[0]=='':
@@ -64,6 +65,3 @@ def get_rest_in_range(user_lat, user_long, max_range):
 
     return r_in_range
 
-longitude, latitude = convert_address("4800 Calhoun Road")
-address = convert_coordinates(longitude, latitude)
-print(address)
