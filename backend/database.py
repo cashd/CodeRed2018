@@ -1,6 +1,7 @@
 from peewee import *
 import csv
 from geopy import distance
+from db_service import *
 
 db = SqliteDatabase('restaurants.db')
 
@@ -61,4 +62,8 @@ def get_rest_in_range(user_lat, user_long, max_range):
         if distance.distance(user_coords, rest_coords).miles <= max_range:
             r_in_range.append(r.name)
 
-    return r_in_rangep
+    return r_in_range
+
+longitude, latitude = convert_address("4800 Calhoun Road")
+address = convert_coordinates(longitude, latitude)
+print(address)
