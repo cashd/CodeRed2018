@@ -1,4 +1,5 @@
 import peewee
+import csv
 from peewee import *
 
 db = SqliteDatabase('restaurants.db')
@@ -23,17 +24,21 @@ class Menu(Base):
 
 def populate_test_data():
     db.create_tables([Restaurants, Menu])
-    #for i in range(10):
-    Restaurants.create(name='Pizza Hut',longitude= 2.6, latitude=3.6,address= 'Enchanted',about='Spring')
-    Restaurants.create(name='Dominoes',longitude= 2.6, latitude=3.6,address= 'Enchanted',about='Spring')
-    Restaurants.create(name='Pizza Hut',longitude= 2.5, latitude=4.6,address= 'Enchanted',about='Spring')
-    # for i in range(10):
-    Menu.create(restaurant_name=id,menu_item='pizza', price=5.5)
-    Menu.create(restaurant_name=Restaurants.get(name="Pizza Hut"),menu_item='wings', price=10.5)
-    Menu.create(restaurant_name=Restaurants.get(name="Pizza Hut"),menu_item='pasta', price=6)
-    Menu.create(restaurant_name=Restaurants.get(name="Dominoes"),menu_item='pizza', price=5.5)
-    Menu.create(restaurant_name=Restaurants.get(name="Dominoes"),menu_item='wings', price=10.5)
-    Menu.create(restaurant_name=Restaurants.get(name="Dominoes"),menu_item='pasta', price=6)
+
+    with open('restaurants.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        restaurant_start=True
+        for row in csv_reader: 
+            if restaurant_start == True:
+                rest=Restaurants.create(name=row[0],longitude= row[2], latitude=row[3],address= row[1],about=row[4])
+                rest.save
+                restaurant_start=False
+            elif row[0]=='':
+                restaurant_start=True
+            else:
+                men=Menu.create(restaurant_name=rest.id,menu_item=row[0], price=row[1])
+                men.save
+
 
 db.connect()
 populate_test_data()
