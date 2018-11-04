@@ -48,7 +48,7 @@ def populate_test_data():
 
 
 # Gets all restraunt rows that are in range of the user
-'''def get_rest_in_range(user_lat, user_long, max_range):
+def get_rest_in_range(user_lat, user_long, max_range):
     db.connect()
     restaurants = Restaurants.select()
     print(len(restaurants))
@@ -61,7 +61,4 @@ def populate_test_data():
         if distance.distance(user_coords, rest_coords).miles <= max_range:
             r_in_range.append(r.name)
 
-    return r_in_range
-'''
-create_database()
-populate_test_data()
+    return r_in_rangep
