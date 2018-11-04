@@ -21,6 +21,7 @@ function debug(){
     console.log(document.getElementById("keywords").value);
 }
 
+
 // Gathers input from different DOM elements
 function getInputs(position) {
     var keywords = document.getElementById("keywords").value;
@@ -54,19 +55,29 @@ function createCard(r){
     cardTitle.innerHTML = r['name'];
     var cardText = document.createElement("p");
     cardText.setAttribute("class", "card-text");
-    cardText.innerHTML = r['info'] + "\n" + r['address'];
+    cardText.innerHTML = `<ul><li>Address: ${r['address']}</li><li>Distance: ${Math.round(r['dis']*100)/100}</li><li><a href="${r['link']}">Menu Link</a</a></li></ul>`;
+
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
     newCard.appendChild(cardBody);
     document.getElementById("result").appendChild(newCard);
+}
 
+function createGoogleMap(response){
+    // if (response.length != 0) {
+    //     var gMap = document.createElement("div")
+    //     gMap.setAttribute("id", "map")
+    //     document.element
+    // }
 }
 
 function handleResponse(response){
     console.log("Here")
     console.log('Success',response);
     console.log(response['restaurants'].length);
+    document.getElementById('result').innerHTML = '';
     response['restaurants'].map((r) => createCard(r))
+    createGoogleMap(response['restaurants'])
 }
 
 // Post data to API and handles errors
@@ -89,5 +100,5 @@ function postData(keywords, range, position) {
         }
     }).then(res => res.json())
     .then(response => handleResponse(response))
-    .catch(error => console.error('Error:', error));
+    .catch(error => handleResponse({"restaurants":[]}));
 }
