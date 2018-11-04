@@ -1,4 +1,3 @@
-<<<<<<< HEAD:backend/restaurants_db.py
 import peewee
 import csv
 from geopy import distance
