@@ -10,3 +10,84 @@ input[type=text] {
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
 }
+
+/*!
+ * Start Bootstrap - Landing Page v5.0.0 (https://startbootstrap.com/template-overviews/landing-page)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
+ */
+
+ body {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+  
+  div.masthead {
+    position: relative;
+    background-color: #343a40;
+    background: url("https://www.israeliamerican.org/sites/default/files/houston-1920x1080.jpg") no-repeat center center;
+    background-size: cover;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+  
+  div.masthead .overlay {
+    position: absolute;
+    background-color: #212529;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+  
+  div.masthead h1 {
+    font-size: 2rem;
+  }
+
+  select.dropdown-range {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  @media (min-width: 768px) {
+    div.masthead {
+      padding-top: 12rem;
+      padding-bottom: 12rem;
+    }
+    div.masthead h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  .showcase .showcase-text {
+    padding: 3rem;
+  }
+  
+  .showcase .showcase-img {
+    min-height: 30rem;
+    background-size: cover;
+  }
+  
+  @media (min-width: 768px) {
+    .showcase .showcase-text {
+      padding: 7rem;
+    }
+  }
+  div.card-columns {
+    padding: 20px;
+  }
+  footer.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  

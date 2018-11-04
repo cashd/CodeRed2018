@@ -23,7 +23,6 @@ class Menu(Base):
     info = CharField()
     catagory = CharField()
 
-
 def create_database():
     db.create_tables([Restaurants, Menu])
 
@@ -45,20 +44,20 @@ def populate_test_data():
                 men=Menu.create(restaurant_name=rest.id,menu_item=row[0], price=row[1])
                 men.save
 
-
-
 # Gets all restraunt rows that are in range of the user
 def get_rest_in_range(user_lat, user_long, max_range):
     db.connect()
     restaurants = Restaurants.select()
-    print(len(restaurants))
     r_in_range = []
     for r in restaurants:
         user_coords = ( user_lat, user_long )
         rest_coords = ( r.latitude, r.longitude )
-        print(user_coords, rest_coords)
-        print(distance.distance(user_coords, rest_coords).miles)
         if distance.distance(user_coords, rest_coords).miles <= max_range:
-            r_in_range.append(r.name)
+            restaurant_data = {
+                "name": r.name,
+                "info": r.info,
+                "address": r.address,
+            }
+            r_in_range.append(restaurant_data)
 
     return r_in_range

@@ -44,6 +44,31 @@ function handleSubmit(){
     getLocation();
 }
 
+function createCard(r){
+    var newCard = document.createElement("div");
+    newCard.setAttribute("class", "card");
+    var cardBody = document.createElement("div");
+    cardBody.setAttribute("class", "card-body")
+    var cardTitle = document.createElement("h5");
+    cardTitle.setAttribute("class","card-title")
+    cardTitle.innerHTML = r['name'];
+    var cardText = document.createElement("p");
+    cardText.setAttribute("class", "card-text");
+    cardText.innerHTML = r['info'] + "\n" + r['address'];
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cardText);
+    newCard.appendChild(cardBody);
+    document.getElementById("result").appendChild(newCard);
+
+}
+
+function handleResponse(response){
+    console.log("Here")
+    console.log('Success',response);
+    console.log(response['restaurants'].length);
+    response['restaurants'].map((r) => createCard(r))
+}
+
 // Post data to API and handles errors
 function postData(keywords, range, position) {
     var data = {
@@ -63,6 +88,6 @@ function postData(keywords, range, position) {
             'Content-Type': 'application/json'
         }
     }).then(res => res.json())
-    .then(response => console.log('Success', JSON.stringify(response)))
+    .then(response => handleResponse(response))
     .catch(error => console.error('Error:', error));
 }
